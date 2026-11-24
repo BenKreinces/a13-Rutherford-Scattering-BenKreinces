@@ -9,3 +9,4 @@ def force(x, y, m = 1, k = 1, R = 1):
     coeff = k / np.maximum(r, R) ** 3
     return x * coeff, y * coeff
 
+
