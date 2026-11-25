@@ -17,6 +17,16 @@ def Verlet(state, h, m=1, rdet = 500):
         states.append(state)
     return np.array(states)
 
+def VerletEnsemble(state, h, m=1):
+    x, y, vx, vy, ax, ay = state
+    rNextX = x + vx * h + 0.5 * h ** 2 * ax
+    rNextY = y + vy * h + 0.5 * h ** 2 * ay
+    FX, FY = force(rNextX, rNextY)
+    aNextX, aNextY = FX/m, FY/m
+    vNextX = vx + 0.5*h*(ax + aNextX)
+    vNextY = vy + 0.5*h*(ay + aNextY)
+    return rNextX, rNextY, vNextX, vNextY, aNextX, aNextY
+
 def initSpeed(x0, E, L = -100, m = 1):
     U = modelU(x0, L)
     if E <= U:
