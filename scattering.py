@@ -6,7 +6,7 @@ def Verlet(state, h, m=1, rdet = 500):
     if h <= 0 or m <= 0 or rdet <= 0:
         raise ValueError("h, m, and rdet must be positive")
     states = [state]
-    while np.hypot(state[0], state[1]) < rdet
+    while np.hypot(state[0], state[1]) < rdet:
         rNextX = state[0] + state[2] * h + 0.5 * h**2 * state[4]
         rNextY = state[1] + state[3] * h + 0.5 * h**2 * state[5]
         FX, FY = force(rNextX, rNextY)
